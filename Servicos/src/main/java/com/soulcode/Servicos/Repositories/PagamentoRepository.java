@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Objects;
 
 public interface PagamentoRepository extends JpaRepository<Pagamento,Integer> {
 
@@ -16,4 +17,7 @@ public interface PagamentoRepository extends JpaRepository<Pagamento,Integer> {
             "\tFROM chamado RIGHT JOIN pagamento ON chamado.id_chamado = pagamento.id_pagamento\n" +
             "    LEFT JOIN cliente ON cliente.id_cliente = chamado.id_cliente",nativeQuery = true)
     List<List> orcamentoComServicoCliente();
+
+    @Query(value="SELECT COUNT(id_pagamento), pagamento.status FROM pagamento GROUP BY pagamento.status;", nativeQuery = true)
+    List<?> quantidadeDePagamentosPorStatus();
 }

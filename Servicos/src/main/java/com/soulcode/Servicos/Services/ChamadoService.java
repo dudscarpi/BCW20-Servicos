@@ -55,6 +55,10 @@ public class ChamadoService {
         return chamadoRepository.findByIntervaloData(data1,data2);
     }
 
+    public List<?> quantidadeDeChamadosPorStatus(){
+        return chamadoRepository.quantidadeDeChamadosPorStatus();
+    }
+
     //cadastrar um novo chamado
     // temos 2 regras:
     //          1) no momento do cadastro do chamado, já devemos informar de qual cliente é
