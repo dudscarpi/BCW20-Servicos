@@ -58,6 +58,11 @@ public class ChamadoController {
         return chamados;
     }
 
+    @GetMapping("/quantidadeChamados/")
+    List<?> quantidadeDeChamadosPorStatus(){
+        return chamadoService.quantidadeDeChamadosPorStatus();
+    }
+
     // aqui vamos definir o endpoint para o serviço de cadastro de um novo chamado
     // para cadastro precisamos anotar como método http - post
     @PostMapping("/chamados/{idCliente}")

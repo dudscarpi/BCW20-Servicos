@@ -42,6 +42,15 @@ public class FuncionarioController {
         return funcionarios;
     }
 
+    @GetMapping("/quantidadeDeFuncionarios/{idCargo}")
+    public List<?> quantidadeDePagamentosPorCargo(@PathVariable Integer idCargo){
+        return funcionarioService.quantidadeDeFuncionariosPorCargo(idCargo);
+    }
+
+    @GetMapping("/funcionariosComFotoNull")
+    public List<Funcionario> funcionariosComFotoNull(){
+        return funcionarioService.funcionariosComFotoNull();
+    }
 
     @PostMapping("/funcionarios/{idCargo}")
     public ResponseEntity<Funcionario> cadastrarFuncionario(@PathVariable Integer idCargo, @RequestBody Funcionario funcionario){

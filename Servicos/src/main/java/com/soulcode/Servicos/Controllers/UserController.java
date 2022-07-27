@@ -31,4 +31,24 @@ public class UserController {
         user = userService.cadastrar(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
+
+    @PutMapping("/usuarios/desativarUser/{login}")
+    public ResponseEntity<User> desativarUser(@PathVariable String login){
+        User user = userService.desativarUser(login);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @DeleteMapping("/usuarios/{login}")
+    public ResponseEntity<Void> excluirUser(@PathVariable String login){
+        userService.excluirUser(login);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/usuarios/alterarSenha/{login}")
+    public ResponseEntity<User> alterarSenha(@PathVariable String login, @RequestBody User user){
+        String senhaCodificada = passwordEncoder.encode(user.getPassword());
+        user.setPassword(senhaCodificada);
+        userService.alterarSenha(login, user);
+        return ResponseEntity.ok().body(user);
+    }
 }

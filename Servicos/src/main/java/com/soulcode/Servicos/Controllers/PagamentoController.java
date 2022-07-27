@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 @CrossOrigin
 @RestController
@@ -40,6 +41,11 @@ public class PagamentoController {
     public List<List> orcamentoComServicoCliente(){
         List<List> pagamentos = pagamentoService.orcamentoComServicoCliente();
         return pagamentos;
+    }
+
+    @GetMapping("/quantidadeDePagamentosPorStatus")
+    public List<?> quantidadeDePagamentosPorStatus(){
+        return pagamentoService.quantidadeDePagamentosPorStatus();
     }
 
     @PostMapping("/pagamentos/{idChamado}")

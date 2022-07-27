@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,10 @@ public class PagamentoService {
 
     public List<Pagamento> mostrarPagamentosPeloStatus(String status){
         return pagamentoRepository.findByStatus(status);
+    }
+
+    public List<?> quantidadeDePagamentosPorStatus(){
+        return pagamentoRepository.quantidadeDePagamentosPorStatus();
     }
 
     public Pagamento cadastrarPagamento(Pagamento pagamento, Integer idChamado){
