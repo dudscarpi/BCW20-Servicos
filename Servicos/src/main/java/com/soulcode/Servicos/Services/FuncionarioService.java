@@ -95,4 +95,12 @@ public class FuncionarioService {
         funcionario.setFoto(caminhoFoto);
         return funcionarioRepository.save(funcionario);
     }
+
+    @CachePut(value = "funcionariosCache", key = "#funcionario, #idCargo")
+    public Funcionario atribuirCargo(Funcionario funcionario, Integer idCargo){
+        Optional<Cargo> cargo = cargoRepository.findById(idCargo);
+        funcionario.setCargo(cargo.get());
+        return funcionarioRepository.save(funcionario);
+
+    }
 }
